@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::redirect('/', '/login');
 
-Route::get('/', function () {
-    return view('test');
+//Route::middleware(['auth'])->get('/dashboard/{page?}', function (){
+//    return view('dashboard');
+//})->name("dashboard")->where('page', '[0-9]+');;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/{page?}', [DashboardController::class, 'show'])
+        ->name('dashboard')
+        ->whereNumber('page');
 });
