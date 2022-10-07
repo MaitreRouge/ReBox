@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('redirections', function (Blueprint $table) {
-            $table->id();
-            $table->string("destination");
-//            $table->times
+        Schema::create('files', function (Blueprint $table) {
+            $table->string("id", 8)->unique();
+            $table->string("path");
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('redirections');
+        Schema::dropIfExists('files');
     }
 };

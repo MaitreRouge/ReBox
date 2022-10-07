@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
             $table->string("id", 8)->unique();
-            $table->string("name", 128);
-            $table->string("source", 128);
-            $table->set("type", ["rediction", "document", "file"]);
-            $table->set("status", ["online", "limit_reached", "disabled", "offline"]);
-            $table->integer("protected")->default(0);
-            $table->timestamps();
+            $table->string("destination");
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('links');
     }
 };
