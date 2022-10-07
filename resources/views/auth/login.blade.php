@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="container px-3 py-6">
+    <div class="px-3 py-6 content-center">
                 <div class="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
             <h1 class="text-3xl font-semibold text-center text-gray-700 dark:text-white">Rebox</h1>
 
@@ -54,7 +54,7 @@
 
                 <div class="mt-6">
                     <button
-                        class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+                        class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-gray-600">
                         Login
                     </button>
                 </div>

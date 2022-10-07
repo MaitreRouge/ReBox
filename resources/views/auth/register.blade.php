@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="container px-3 py-6">
+    <div class="px-3 py-6 content-center">
         <div class="w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
             <h1 class="text-3xl font-semibold text-center text-gray-700 dark:text-white">Rebox</h1>
 
