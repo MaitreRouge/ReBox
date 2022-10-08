@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -15,12 +16,12 @@ class User extends Authenticatable
     public $incrementing = false;
     protected $keyType = "string";
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [];
+    protected $fillable = [
+        "id",
+        "name",
+        "email",
+        "password"
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -31,4 +32,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    static public function create(array $params): self
+    {
+        $params["id"] = Str::random(8);
+        $user = (new User($params));
+        if ($user->save()) {
+            return $user;
+        }
+        return false;
+    }
 }
