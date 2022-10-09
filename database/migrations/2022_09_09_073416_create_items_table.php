@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->string("id", 8)->unique();
             $table->string("name", 128);
+            $table->string("domain", 128);
             $table->string("source", 128);
-            $table->set("type", ["rediction", "document", "file"]);
+            $table->string("owner_id", 8);
+            $table->set("type", ["redirection", "document", "file"]);
             $table->set("status", ["online", "limit_reached", "disabled", "offline"]);
             $table->integer("protected")->default(0);
             $table->timestamps();
