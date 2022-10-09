@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller {
 
     /**
@@ -13,7 +15,9 @@ class DashboardController extends Controller {
     public function show(int $page = 0)
     {
         return view('dashboard', [
-            "page" => $page
+            //TODO: owner_id
+            //TODO: page_id
+            "data" => DB::select("SELECT * FROM items")
         ]);
     }
 
