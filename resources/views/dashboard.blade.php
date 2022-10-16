@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    {{--    {{ $page }}--}}
+    {{--        {{ $page }}--}}
 
     <div class="px-10 mt-10 overflow-x-auto relative rounded-lg sm:rounded-lg">
 
@@ -80,7 +80,17 @@
                     <th scope="row"
                         class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
                         <div class="pl-3">
-                            <div class="text-base font-semibold">{{ $d->name }}</div>
+                            <div class="text-base font-semibold">
+                                @if(isset(($d->protection??null)->password))
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" style="display: unset"
+                                         class="h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+                                    </svg>
+                                @endif
+                                {{ $d->name }}
+                            </div>
                             <div class="font-normal text-gray-500">{{ ucfirst($d->type) }}</div>
                         </div>
                     </th>
@@ -90,32 +100,32 @@
                     </td>
                     <td class="py-4 px-6">
                         <div class="flex items-center">
+                            @if(isset($d->protection->limit) and $d->protection->limit <= count($d->logs) and $d->status === "online")
+                                <div class="h-2.5 w-2.5 rounded-full bg-blue-400 mr-2"></div>Limit reached
+                            @else
                             @switch($d->status)
                                 @case("online")
                                 <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
                                 @break
-                                @case("limit_reached")
-                                <div class="h-2.5 w-2.5 rounded-full bg-blue-400 mr-2"></div>
-                                @break
                                 @case("disabled")
-                                <div class="h-2.5 w-2.5 rounded-full bg-gray-400 mr-2"></div>
+                                <div class="h-2.5 w-2.5 rounded-full bg-gray-700 mr-2"></div>
                                 @break
                                 @case("offline")
                                 <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
                                 @break
                             @endswitch
                             {{ ucfirst(str_replace("_", " ", $d->status)) }}<br>
+                            @endif
                         </div>
-                        @if($d->status === "limit_reached")
-                        <div class="font-normal text-gray-500">69/69</div>
+                        @if(isset($d->protection->limit) and $d->status === "online")
+                            <div class="font-normal text-gray-500">{{ count($d->logs) . "/" . ($d->protection->limit)??null }}</div>
                         @endif
+                        {{--                        @endif--}}
                         {{-- TODO: Protection --}}
                         {{--                        <div class="font-normal text-gray-500"></div>--}}
                     </td>
-                    <td class="py-4 pl-6">
+                    <td class="py-4 px-6">
                         <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Copy</a>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Open</a>
                     </td>
                 </tr>
 
