@@ -24,7 +24,7 @@ if ($source == "127.0.0.1"){
     //TODO: Load domains from database
     //WARNING: This is only for dev purposes, please do not use that as production
     //WARNING: This works by using localhost:80 & 127.0.0.1:80 (php can diff them so that's how I test stuff here)
-    Route::get($server["PATH_INFO"]??"/", [RedirectController::class, "process"]);
+    return Route::get($server["PATH_INFO"]??"/", [RedirectController::class, "process"]);
 }
 
 Route::redirect('/', '/login');
