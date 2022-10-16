@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ressources', function (Blueprint $table) {
+        /*Schema::create('ressources', function (Blueprint $table) {
             $table->string("item_id",8)->unique();
             $table->set("type", ["file", "redirection", "notes"]);
 //            $table->string("ressource_id", 8)->unique();
-        });
+        });*/
     }
 
     /**

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('protections', function (Blueprint $table) {
-            $table->string("item_id", 8)->unique();
-            $table->string("password")->nullable();
-            $table->integer("limit")->nullable();
-            //TODO: Add users protection
-//            $table->timestamps();
+        Schema::create('redirections', function (Blueprint $table) {
+            $table->id();
+            $table->string("destination");
+//            $table->times
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('protections');
+        Schema::dropIfExists('redirections');
     }
 };
